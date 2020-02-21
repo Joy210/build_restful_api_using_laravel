@@ -23,5 +23,22 @@ class PersonController extends Controller
 
     }
 
+    public function store(Request $request){
+
+        $request->validate([
+            'firstname' => 'required',
+            'lastname' => 'required',
+            'phone'  => 'required',
+            'email' => 'required',
+            'city' => 'required',
+        ]);
+
+        $person = Person::create($request->all());
+
+        return new PersonResource($person);
+
+    }
+
+    
 
 }
