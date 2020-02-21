@@ -30,7 +30,7 @@ class PersonController extends Controller
             'lastname' => 'required',
             'phone'  => 'required',
             'email' => 'required',
-            'city' => 'required',
+            'city' => 'required'
         ]);
 
         $person = Person::create($request->all());
@@ -39,6 +39,22 @@ class PersonController extends Controller
 
     }
 
-    
+    public function update(Person $person, Request $request) : PersonResource {
+        
+        $request->validate([
+            'firstname' => 'required',
+            'lastname' => 'required',
+            'phone'  => 'required',
+            'email' => 'required',
+            'city' => 'required'
+        ]);
+
+        // dd($request->toArray());
+        $person->update($request->all());
+        
+        return new PersonResource($person);
+
+    }
+
 
 }
